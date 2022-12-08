@@ -54,7 +54,8 @@ $ npm run test:cov
 
 ### Appointment
 
-- Create appointment
-- Delete appointment
-- Update appointment
+- Create Appointment
+- Delete Appointment
+- Update Appointment
+- Find By Appointement Id
 - Search

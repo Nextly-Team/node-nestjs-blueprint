@@ -40,6 +40,7 @@ describe('UserController (e2e)', () => {
         expect(result.body).toHaveProperty('_id');
         expect(result.body).toHaveProperty('name');
         expect(result.body).toHaveProperty('email');
+        expect(result.body).toHaveProperty('availability');
       })
   })
 
@@ -51,6 +52,7 @@ describe('UserController (e2e)', () => {
         expect(result.body[0]).toHaveProperty('_id');
         expect(result.body[0]).toHaveProperty('name');
         expect(result.body[0]).toHaveProperty('email');
+        expect(result.body).toHaveProperty('availability');
       })
   })
 
@@ -62,6 +64,7 @@ describe('UserController (e2e)', () => {
         expect(result.body).toHaveProperty('_id');
         expect(result.body).toHaveProperty('name');
         expect(result.body).toHaveProperty('email');
+        expect(result.body).toHaveProperty('availability');
       })
   })
 
@@ -75,6 +78,7 @@ describe('UserController (e2e)', () => {
       expect(result.body).toHaveProperty('name');
       expect(result.body.name).toEqual('Rodrigo Tornaciole');
       expect(result.body).toHaveProperty('email');
+      expect(result.body).toHaveProperty('availability');
     })
   })
 
