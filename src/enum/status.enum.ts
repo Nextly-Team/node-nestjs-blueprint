@@ -1,5 +1,5 @@
 export enum Status {
-    Allocated,
-    NotAllocated,
-    AvailableSoon
+    Allocated = "Allocated",
+    NotAllocated = "NotAllocated",
+    AvailableSoon = "AvailableSoon"
 }
