@@ -19,7 +19,6 @@ import { MongooseModule } from '@nestjs/mongoose';
     AppointmentModule, 
     TerminusModule, 
     HttpModule],
-  controllers: [AppController, HealthCheckController],
-  providers: [AppService],
+  controllers: [HealthCheckController],
 })
 export class AppModule {}

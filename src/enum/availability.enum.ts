@@ -1,6 +1,6 @@
 export enum Availability {
-    Full,
-    PartTime,
-    SixHour,
-    Other
+    Full = "Full",
+    PartTime = "PartTime",
+    SixHour = "SixHour",
+    Other = "Other"
 }
