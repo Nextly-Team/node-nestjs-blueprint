@@ -2,7 +2,7 @@ import { IsEnum, IsInt, IsString, Max, Min, ValidateNested } from "class-validat
 import { Availability } from "./../../enum/availability.enum";
 import { Status } from "./../../enum/status.enum";
 import { Project } from "./../../projects/entity/project.entity";
-import { User } from "./../../users/entity/user.entity";
+import { User } from "../../users/entity/user.entity";
 
 export class CreateAppointmentDTO {
     @IsInt()

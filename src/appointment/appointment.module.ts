@@ -7,12 +7,6 @@ import { Appointment, AppointmentSchema } from './entity/appointment.entity';
 @Module({
   imports:[MongooseModule.forFeature([{ name: Appointment.name, schema: AppointmentSchema}])],
   controllers: [AppointmentController],
-  providers: [
-    AppointmentService,
-    {
-      provide: getModelToken(Appointment.name),
-      useValue: 'appointmentModel'
-    }
-  ]
+  providers: [AppointmentService]
 })
 export class AppointmentModule {}

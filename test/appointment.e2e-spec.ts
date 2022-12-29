@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { MongooseModule } from '@nestjs/mongoose';
+import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { Appointment, AppointmentSchema } from './../src/appointment/entity/appointment.entity';
 import { AppointmentModule } from './../src/appointment/appointment.module';
 import { AppointmentService } from './../src/appointment/appointment.service';
@@ -19,7 +19,11 @@ describe('AppointmentController (e2e)', () => {
         MongooseModule.forFeature([{name: Appointment.name, schema: AppointmentSchema}]),
         AppointmentModule
       ],
-      providers: [AppointmentService],
+      providers: [AppointmentService,
+        {
+          provide: getModelToken(Appointment.name),
+          useValue: 'appointmentModel'
+        }],
       controllers: [AppointmentController]
     }).compile();
 
@@ -33,7 +37,7 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointment (CREATE APPOINTMENT)',() => {
     return request(app.getHttpServer())
-      .post('/appointment')
+      .post('/v1/appointment')
       .send(createAppointmentMockRequest)
       .then((result) => {
         expect(result.statusCode).toEqual(201);
@@ -49,7 +53,7 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointment/search (SEARCH APPOINTMENT)', () => {
     return request(app.getHttpServer())
-      .post('/appointment/search')
+      .post('/v1/appointment/search')
       .send(searchAppointmentMockRequest)
       .then((result) => {
         expect(result.statusCode).toEqual(201);
@@ -65,7 +69,7 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointment/{appointmentId} (GET BY APPOINTMENT ID)', () => {
     return request(app.getHttpServer())
-      .get(`/appointment/${createAppointmentMockRequest._id}`)
+      .get(`/v1/appointment/${createAppointmentMockRequest._id}`)
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         expect(result.body).toHaveProperty('_id');
@@ -80,7 +84,7 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointment/{appointmentId} (UPDATE APPOINTMENTSER ID', () => {
     return request(app.getHttpServer())
-    .patch(`/appointment/${createAppointmentMockRequest._id}`)
+    .patch(`/v1/appointment/${createAppointmentMockRequest._id}`)
     .send(updateAppointmentMockResponse)
     .then((result) => {
       expect(result.statusCode).toEqual(200);
@@ -97,7 +101,7 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointment/{appointmentId} (DELETE BY OPPOINTMENT ID', () => {
     return request(app.getHttpServer())
-      .delete(`/appointment/${createAppointmentMockRequest._id}`)
+      .delete(`/v1/appointment/${createAppointmentMockRequest._id}`)
       .expect(200)
   })
 });
