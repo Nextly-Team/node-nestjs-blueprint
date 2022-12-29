@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { MongooseModule } from '@nestjs/mongoose';
+import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { Project, ProjectSchema } from './../src/projects/entity/project.entity';
 import { ProjectsModule } from './../src/projects/projects.module';
 import { ProjectsService } from './../src/projects/projects.service';
@@ -19,7 +19,11 @@ describe('ProjectController (e2e)', () => {
         MongooseModule.forFeature([{name: Project.name, schema: ProjectSchema}]),
         ProjectsModule
       ],
-      providers: [ProjectsService],
+      providers: [ProjectsService,
+        {
+          provide: getModelToken(Project.name),
+          useValue: 'projectModel'
+        }],
       controllers: [ProjectsController]
     }).compile();
 
@@ -33,7 +37,7 @@ describe('ProjectController (e2e)', () => {
 
   it('/projects (CREATE PROJECT)',() => {
     return request(app.getHttpServer())
-      .post('/projects')
+      .post('/v1/projects')
       .send(createProjectMockRequest)
       .then((result) => {
         expect(result.statusCode).toEqual(201);
@@ -45,7 +49,7 @@ describe('ProjectController (e2e)', () => {
 
   it('/projects (GET ALL PROJECTS)', () => {
     return request(app.getHttpServer())
-      .get('/projects')
+      .get('/v1/projects')
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         expect(result.body[0]).toHaveProperty('_id');
@@ -56,7 +60,7 @@ describe('ProjectController (e2e)', () => {
 
   it('/projects/{projectId} (GET BY PROJECT ID)', () => {
     return request(app.getHttpServer())
-      .get(`/projects/${createProjectMockRequest._id}`)
+      .get(`/v1/projects/${createProjectMockRequest._id}`)
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         expect(result.body).toHaveProperty('_id');
@@ -67,7 +71,7 @@ describe('ProjectController (e2e)', () => {
 
   it('/projects/{projectId} (UPDATE BY PROJECT ID', () => {
     return request(app.getHttpServer())
-    .patch(`/projects/${createProjectMockRequest._id}`)
+    .patch(`/v1/projects/${createProjectMockRequest._id}`)
     .send(updateProjectMockResponse)
     .then((result) => {
       expect(result.statusCode).toEqual(200);
@@ -80,7 +84,7 @@ describe('ProjectController (e2e)', () => {
 
   it('/projects/{projectId} (DELETE BY PROJECT ID', () => {
     return request(app.getHttpServer())
-      .delete(`/projects/${createProjectMockRequest._id}`)
+      .delete(`/v1/projects/${createProjectMockRequest._id}`)
       .expect(200)
   })
 });

@@ -7,12 +7,6 @@ import { ProjectsService } from './projects.service';
 @Module({
   imports:[MongooseModule.forFeature([{ name: Project.name, schema: ProjectSchema}])],
   controllers: [ProjectsController],
-  providers: [
-    ProjectsService,
-    {
-      provide: getModelToken(Project.name),
-      useValue: 'projectModel'
-    }
-  ]
+  providers: [ProjectsService]
 })
 export class ProjectsModule {}

@@ -5,7 +5,7 @@ import { SearchAppointmentDTO } from './dto/search-appointment.dto';
 import { UpdateAppointmentDTO } from './dto/update-appointment.dto';
 import { Appointment } from './entity/appointment.entity';
 
-@Controller('appointment')
+@Controller('v1/appointment')
 export class AppointmentController {
     constructor(
         private readonly appointmentService: AppointmentService

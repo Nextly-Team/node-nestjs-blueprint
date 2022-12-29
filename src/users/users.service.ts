@@ -7,14 +7,16 @@ import { User, UserDocument } from './entity/user.entity';
 
 @Injectable()
 export class UsersService {
-    constructor(
-        @InjectModel(User.name) private userModel: Model<UserDocument>,
-    ){}
+    constructor(@InjectModel(User.name) private userModel: Model<UserDocument>){}
 
     async create(createUserDto: CreateUserDTO): Promise<User> {
+        const user = await this.findByEmail(createUserDto.email);
+        if(user)
+            throw new BadRequestException(`${user.email} already exist!`);
+
         const createUser = new this.userModel(createUserDto);
         try{
-            return await createUser.save();
+            return createUser.save();
         }catch(e){
             throw new BadRequestException(e.message);
         }
@@ -29,7 +31,9 @@ export class UsersService {
     }
 
     async findAll(): Promise<User[]> {
-        return await this.userModel.find().exec();
+        const result = await this.userModel.find().exec();
+        console.log(result);
+        return result;
     }
 
     async find(_id): Promise<User> {
@@ -42,5 +46,9 @@ export class UsersService {
         }catch(e){
             throw new BadRequestException(e.message);
         }
+    }
+
+    async findByEmail(email: string): Promise<User> {
+        return await this.userModel.findOne({email})
     }
 }

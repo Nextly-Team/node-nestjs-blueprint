@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { Availability } from "./../../enum/availability.enum";
+import { Availability } from "../../enum/availability.enum";
 
 export type UserDocument = HydratedDocument<User>
 
@@ -9,7 +9,7 @@ export class User {
     @Prop({ required: true })
     name: string;
 
-    @Prop({ required: true })
+    @Prop({ required: true, unique: true })
     email: string;
 
     @Prop({ required: true, type: String})
