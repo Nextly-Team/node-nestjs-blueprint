@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateProjectDTO } from './dto/create-project.dto';
 import { UpdateProjectDTO } from './dto/update-project.dto';
-import { Project } from './entity/project.entity';
+import { Project } from './entity/projects.entity';
 import { ProjectsService } from './projects.service';
 
 @Controller('v1/projects')

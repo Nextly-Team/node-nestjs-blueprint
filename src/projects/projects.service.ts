@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateProjectDTO } from './dto/create-project.dto';
 import { UpdateProjectDTO } from './dto/update-project.dto';
-import { Project, ProjectDocument } from './entity/project.entity';
+import { Project, ProjectDocument } from './entity/projects.entity';
 
 @Injectable()
 export class ProjectsService {
