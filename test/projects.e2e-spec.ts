@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { getModelToken, MongooseModule } from '@nestjs/mongoose';
-import { Project, ProjectSchema } from './../src/projects/entity/project.entity';
+import { Project, ProjectSchema } from '../src/projects/entity/projects.entity';
 import { ProjectsModule } from './../src/projects/projects.module';
 import { ProjectsService } from './../src/projects/projects.service';
 import { ProjectsController } from './../src/projects/projects.controller';
