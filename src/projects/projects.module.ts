@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { getModelToken, MongooseModule } from '@nestjs/mongoose';
-import { Project, ProjectSchema } from './entity/projects.entity';
+import { Project, ProjectSchema } from './entity/project.entity';
 import { ProjectsController } from './projects.controller';
 import { ProjectsService } from './projects.service';
 

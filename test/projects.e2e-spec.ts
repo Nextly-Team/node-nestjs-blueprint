@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { getModelToken, MongooseModule } from '@nestjs/mongoose';
-import { Project, ProjectSchema } from '../src/projects/entity/project.entity';
-import { ProjectsModule } from './../src/projects/projects.module';
-import { ProjectsService } from './../src/projects/projects.service';
-import { ProjectsController } from './../src/projects/projects.controller';
+import { Project, ProjectSchema } from  '../src/projects/entity/project.entity';
+import { ProjectsModule } from '../src/projects/projects.module';
+import { ProjectsService } from '../src/projects/projects.service';
+import { ProjectsController } from '../src/projects/projects.controller';
 import { createProjectMockRequest, updateProjectMockResponse } from './mock/projectMock';
 
 describe('ProjectController (e2e)', () => {
