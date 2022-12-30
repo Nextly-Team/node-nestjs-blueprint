@@ -19,11 +19,7 @@ describe('AppointmentController (e2e)', () => {
         MongooseModule.forFeature([{name: Appointment.name, schema: AppointmentSchema}]),
         AppointmentModule
       ],
-      providers: [AppointmentService,
-        {
-          provide: getModelToken(Appointment.name),
-          useValue: 'appointmentModel'
-        }],
+      providers: [AppointmentService],
       controllers: [AppointmentController]
     }).compile();
 

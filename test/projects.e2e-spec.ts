@@ -19,11 +19,7 @@ describe('ProjectController (e2e)', () => {
         MongooseModule.forFeature([{name: Project.name, schema: ProjectSchema}]),
         ProjectsModule
       ],
-      providers: [ProjectsService,
-        {
-          provide: getModelToken(Project.name),
-          useValue: 'projectModel'
-        }],
+      providers: [ProjectsService],
       controllers: [ProjectsController]
     }).compile();
 

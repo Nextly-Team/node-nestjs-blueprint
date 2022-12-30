@@ -19,11 +19,7 @@ describe('UserController (e2e)', () => {
         MongooseModule.forFeature([{name: User.name, schema: UserSchema}]),
         UsersModule
       ],
-      providers: [UsersService,
-        {
-          provide: getModelToken(User.name),
-          useValue: 'userModel',
-        }],
+      providers: [UsersService],
       controllers: [UsersController]
     }).compile();
 
@@ -80,7 +76,7 @@ describe('UserController (e2e)', () => {
       expect(result.statusCode).toEqual(200);
       expect(result.body).toHaveProperty('_id');
       expect(result.body).toHaveProperty('name');
-      expect(result.body.name).toEqual('Rodrigo Tornaciole');
+      expect(result.body.name).toEqual('NEXTLY');
       expect(result.body).toHaveProperty('email');
       expect(result.body).toHaveProperty('availability');
     })

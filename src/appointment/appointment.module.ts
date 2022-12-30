@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { getModelToken, MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppointmentController } from './appointment.controller';
 import { AppointmentService } from './appointment.service';
 import { Appointment, AppointmentSchema } from './entity/appointment.entity';

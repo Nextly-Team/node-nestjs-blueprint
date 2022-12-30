@@ -1,16 +1,16 @@
 export const createUserMockRequest = {
     _id: '507f191e810c19729de860ea',
-    name: 'Rodrigo Correa',
-    email: 'rodrigo.tornaciole@leanonsystems.com',
+    name: 'NEXTLY TEST',
+    email: 'nextly.test@nextly.test',
     availability: 'Full'
 }
 
 export const createUserMockResponse = {
-    name: 'Rodrigo Correa',
-    email: 'rodrigo.tornaciole@leanonsystems.com',
+    name: 'NEXTLY TEST',
+    email: 'nextly.test@nextly.test',
     availability: 'Full'
 }
 
 export const updateUserMockResponse = {
-    name: 'Rodrigo Tornaciole'
+    name: 'NEXTLY'
 }
