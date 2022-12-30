@@ -1,8 +1,8 @@
 import { IsEnum, IsInt, IsString, Max, Min, ValidateNested } from "class-validator";
 import { Availability } from "./../../enum/availability.enum";
 import { Status } from "./../../enum/status.enum";
-import { Project } from "./../../projects/entity/project.entity";
-import { User } from "./../../users/entity/user.entity";
+import { Project } from "../../projects/entity/project.entity";
+import { User } from "../../users/entity/user.entity";
 
 class FilterByDTO {
 

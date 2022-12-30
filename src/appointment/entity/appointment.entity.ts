@@ -2,8 +2,8 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 import { Availability } from "./../../enum/availability.enum";
 import { Status } from "./../../enum/status.enum";
-import { Project } from "./../../projects/entity/project.entity";
-import { User } from "./../../users/entity/user.entity";
+import { Project } from "../../projects/entity/project.entity";
+import { User } from "../../users/entity/user.entity";
 
 export type AppointmentDocument = HydratedDocument<Appointment>
 

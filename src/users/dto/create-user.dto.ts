@@ -1,4 +1,5 @@
-import { IsEmail, IsString, MaxLength, MinLength } from "class-validator";
+import { IsEmail, IsEnum, IsString, MaxLength, MinLength } from "class-validator";
+import { Availability } from "../../enum/availability.enum";
 
 export class CreateUserDTO {
     @IsString()
@@ -8,4 +9,7 @@ export class CreateUserDTO {
     
     @IsEmail()
     email: string;
+
+    @IsEnum(Availability)
+    availability: Availability;
 }
