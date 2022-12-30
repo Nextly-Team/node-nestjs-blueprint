@@ -61,7 +61,7 @@ $ npm run test:cov
 
 ### Create User
 
-> $\colorbox{green}{{\color{white}{POST}}}$ `v1/users`
+$\colorbox{green}{{\color{white}{POST}}}$  `v1/users`
 
 Body Request:
 ```json
@@ -87,13 +87,13 @@ Body Response:
 
 ### Delete User
 
-> $\colorbox{#f93e3e}{{\color{white}{DELETE}}}$ `v1/users/{id}`
+$\colorbox{#f93e3e}{{\color{white}{DELETE}}}$ `v1/users/{id}`
 
 [Back to User](#user)
 
 ### Update User
 
-> $\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/users/{id}`
+$\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/users/{id}`
 
 Body Request:
 ```json
@@ -117,7 +117,7 @@ Body Response:
 
 ### Find All Users
 
-> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/users`
+$\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/users`
 
 Body Response:
 ```json
@@ -135,7 +135,7 @@ Body Response:
 
 ### Find By User Id
 
-> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/users/{id}`
+$\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/users/{id}`
 
 Body Response:
 ```json
@@ -161,7 +161,7 @@ Body Response:
 
 ### Create Project
 
-> $\colorbox{green}{{\color{white}{POST}}}$ `v1/projects`
+$\colorbox{green}{{\color{white}{POST}}}$ `v1/projects`
 
 Body Request:
 ```json
@@ -184,13 +184,13 @@ Body Response:
 
 ### Delete Project
 
-> $\colorbox{#f93e3e}{{\color{white}{DELETE}}}$  `v1/projects/{id}`
+$\colorbox{#f93e3e}{{\color{white}{DELETE}}}$  `v1/projects/{id}`
 
 [Back to Project](#project)
 
 ### Update Project
 
-> $\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/projects/{id}`
+$\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/projects/{id}`
 
 Body Request:
 ```json
@@ -213,7 +213,7 @@ Body Response:
 
 ### Find All Projects
 
-> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/projects`
+$\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/projects`
 
 Body Response:
 ```json
@@ -230,7 +230,7 @@ Body Response:
 
 ### Find By Project Id
 
-> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/projects`
+$\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/projects`
 
 Body Response:
 ```json
@@ -255,7 +255,7 @@ Body Response:
 
 ### Create Appointment
 
-> $\colorbox{green}{{\color{white}{POST}}}$ `v1/appointment`
+$\colorbox{green}{{\color{white}{POST}}}$ `v1/appointment`
 
 Body Request:
 ```json
@@ -302,13 +302,13 @@ Body Response:
 
 ### Delete Appointment
 
-> $\colorbox{#f93e3e}{{\color{white}{DELETE}}}$  `v1/appointment/{id}`
+$\colorbox{#f93e3e}{{\color{white}{DELETE}}}$  `v1/appointment/{id}`
 
 [Back to Appointment](#appointment)
 
 ### Update Appointment
 
-> $\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/appointment/{id}`
+$\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/appointment/{id}`
 
 Body Request:
 ```json
@@ -346,7 +346,7 @@ Body Response:
 
 ### Find By Appointement Id
 
-> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/appointment`
+$\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/appointment`
 
 Body Response:
 ```json
@@ -373,7 +373,7 @@ Body Response:
 
 ### Search Appointment
 
-> $\colorbox{green}{{\color{white}{POST}}}$ `v1/appointment`
+$\colorbox{green}{{\color{white}{POST}}}$ `v1/appointment`
 
 Body Request:
 ```json
