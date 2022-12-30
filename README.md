@@ -61,7 +61,7 @@ $ npm run test:cov
 
 ### Create User
 
-> <span style="color:green">**POST**</span> `v1/users`
+> $\colorbox{green}{{\color{white}{POST}}}$ `v1/users`
 
 Body Request:
 ```json
@@ -87,13 +87,13 @@ Body Response:
 
 ### Delete User
 
-> <span style="color:#f93e3e">**DELETE**</span> `v1/users/{id}`
+> $\colorbox{#f93e3e}{{\color{white}{DELETE}}}$ `v1/users/{id}`
 
 [Back to User](#user)
 
 ### Update User
 
-> <span style="color:#50e3c2">**PATCH**</span> `v1/users/{id}`
+> $\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/users/{id}`
 
 Body Request:
 ```json
@@ -117,7 +117,7 @@ Body Response:
 
 ### Find All Users
 
-> <span style="color:#61affe">**GET**</span> `v1/users`
+> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/users`
 
 Body Response:
 ```json
@@ -135,7 +135,7 @@ Body Response:
 
 ### Find By User Id
 
-> <span style="color:#61affe">**GET**</span> `v1/users/{id}`
+> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/users/{id}`
 
 Body Response:
 ```json
@@ -161,7 +161,7 @@ Body Response:
 
 ### Create Project
 
-> <span style="color:green">**POST**</span> `v1/projects`
+> $\colorbox{green}{{\color{white}{POST}}}$ `v1/projects`
 
 Body Request:
 ```json
@@ -184,13 +184,13 @@ Body Response:
 
 ### Delete Project
 
-> <span style="color:#f93e3e">**DELETE**</span> `v1/projects/{id}`
+> $\colorbox{#f93e3e}{{\color{white}{DELETE}}}$  `v1/projects/{id}`
 
 [Back to Project](#project)
 
 ### Update Project
 
-> <span style="color:#50e3c2">**PATCH**</span> `v1/projects/{id}`
+> $\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/projects/{id}`
 
 Body Request:
 ```json
@@ -213,7 +213,7 @@ Body Response:
 
 ### Find All Projects
 
-> <span style="color:#61affe">**GET**</span> `v1/projects`
+> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/projects`
 
 Body Response:
 ```json
@@ -230,7 +230,7 @@ Body Response:
 
 ### Find By Project Id
 
-> <span style="color:#61affe">**GET**</span> `v1/projects`
+> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/projects`
 
 Body Response:
 ```json
@@ -255,7 +255,7 @@ Body Response:
 
 ### Create Appointment
 
-> <span style="color:green">**POST**</span> `v1/appointment`
+> $\colorbox{green}{{\color{white}{POST}}}$ `v1/appointment`
 
 Body Request:
 ```json
@@ -302,13 +302,13 @@ Body Response:
 
 ### Delete Appointment
 
-> <span style="color:#f93e3e">**DELETE**</span> `v1/appointment/{id}`
+> $\colorbox{#f93e3e}{{\color{white}{DELETE}}}$  `v1/appointment/{id}`
 
 [Back to Appointment](#appointment)
 
 ### Update Appointment
 
-> <span style="color:#50e3c2">**PATCH**</span> `v1/appointment/{id}`
+> $\colorbox{#50e3c2}{{\color{white}{PATCH}}}$ `v1/appointment/{id}`
 
 Body Request:
 ```json
@@ -346,7 +346,7 @@ Body Response:
 
 ### Find By Appointement Id
 
-> <span style="color:#61affe">**GET**</span> `v1/appointment`
+> $\colorbox{#61affe}{{\color{white}{GET}}}$  `v1/appointment`
 
 Body Response:
 ```json
@@ -373,7 +373,7 @@ Body Response:
 
 ### Search Appointment
 
-> <span style="color:green">**POST**</span> `v1/appointment`
+> $\colorbox{green}{{\color{white}{POST}}}$ `v1/appointment`
 
 Body Request:
 ```json
