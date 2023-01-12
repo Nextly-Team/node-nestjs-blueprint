@@ -7,7 +7,7 @@ import { UpdateAppointmentDTO } from './dto/update-appointment.dto';
 import { Appointment, AppointmentDocument } from './entity/appointment.entity';
 
 @Injectable()
-export class AppointmentService {
+export class AppointmentsService {
     constructor(
         @InjectModel(Appointment.name) private appointmentModel: Model<AppointmentDocument>
     ){}
@@ -35,6 +35,10 @@ export class AppointmentService {
         }catch(e){
             throw new BadRequestException(e.message);
         }
+    }
+
+    async findAll(): Promise<Appointment[]> {
+        return await this.appointmentModel.find().exec();
     }
 
     async find(_id): Promise<Appointment> {

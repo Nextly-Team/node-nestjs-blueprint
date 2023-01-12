@@ -5,10 +5,10 @@ export type ProjectDocument = HydratedDocument<Project>
 
 @Schema()
 export class Project {
-    @Prop({ required: true })
+    @Prop({ required: true, unique: true })
     name: string;
 
-    @Prop({ required: true })
+    @Prop({ required: true, unique: true })
     tag: string;
 }
 

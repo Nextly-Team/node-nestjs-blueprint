@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { Availability } from "./../../enum/availability.enum";
-import { Status } from "./../../enum/status.enum";
+import { Availability } from "../../enum/availability.enum";
+import { Status } from "../../enum/status.enum";
 import { Project } from "../../projects/entity/project.entity";
 import { User } from "../../users/entity/user.entity";
 
@@ -10,11 +10,14 @@ export type AppointmentDocument = HydratedDocument<Appointment>
 @Schema()
 export class Appointment {
     @Prop({ required: true })
-    weekOfYear: Number;
+    weekOfYear: string;
 
     @Prop({ required: true })
-    year: Number;
+    year: string;
 
+    @Prop({ required: true })
+    date: Date;
+    
     @Prop({ required: true })
     user: User;
 

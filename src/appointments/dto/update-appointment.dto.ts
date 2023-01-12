@@ -1,6 +1,6 @@
 import { IsEnum, IsInt, IsString, Max, Min } from "class-validator";
-import { Availability } from "./../../enum/availability.enum";
-import { Status } from "./../../enum/status.enum";
+import { Availability } from "../../enum/availability.enum";
+import { Status } from "../../enum/status.enum";
 
 export class UpdateAppointmentDTO {
     @IsInt()

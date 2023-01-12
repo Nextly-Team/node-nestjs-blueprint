@@ -31,8 +31,7 @@ export class UsersService {
     }
 
     async findAll(): Promise<User[]> {
-        const result = await this.userModel.find().exec();
-        return result;
+        return await this.userModel.find().exec();
     }
 
     async find(_id): Promise<User> {

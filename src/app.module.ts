@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
-import { AppointmentModule } from './appointment/appointment.module';
+import { AppointmentsModule } from './appointments/appointments.module';
 import { TerminusModule } from '@nestjs/terminus';
 import { HttpModule } from '@nestjs/axios';
 import { HealthCheckController } from './health-check.controller';
@@ -14,7 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forRoot(process.env.DATABASE_HOST),
     UsersModule, 
     ProjectsModule, 
-    AppointmentModule, 
+    AppointmentsModule, 
     TerminusModule, 
     HttpModule],
   controllers: [HealthCheckController],

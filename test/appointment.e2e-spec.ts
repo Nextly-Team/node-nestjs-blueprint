@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { getModelToken, MongooseModule } from '@nestjs/mongoose';
-import { Appointment, AppointmentSchema } from './../src/appointment/entity/appointment.entity';
-import { AppointmentModule } from './../src/appointment/appointment.module';
-import { AppointmentService } from './../src/appointment/appointment.service';
-import { AppointmentController } from './../src/appointment/appointment.controller';
+import { Appointment, AppointmentSchema } from '../src/appointments/entity/appointment.entity';
+import { AppointmentsModule } from '../src/appointments/appointments.module';
+import { AppointmentsService } from '../src/appointments/appointments.service';
+import { AppointmentsController } from '../src/appointments/appointments.controller';
 import { createAppointmentMockRequest, searchAppointmentMockRequest, updateAppointmentMockResponse } from './mock/appointmentMock';
 
 describe('AppointmentController (e2e)', () => {
@@ -17,10 +17,10 @@ describe('AppointmentController (e2e)', () => {
       imports: [
         MongooseModule.forRoot('mongodb://localhost/allocation'),
         MongooseModule.forFeature([{name: Appointment.name, schema: AppointmentSchema}]),
-        AppointmentModule
+        AppointmentsModule
       ],
-      providers: [AppointmentService],
-      controllers: [AppointmentController]
+      providers: [AppointmentsService],
+      controllers: [AppointmentsController]
     }).compile();
 
     app = moduleFixture.createNestApplication();
@@ -31,9 +31,9 @@ describe('AppointmentController (e2e)', () => {
     moduleFixture.close();
   });
 
-  it('/appointment (CREATE APPOINTMENT)',() => {
+  it('/appointments (CREATE APPOINTMENT)',() => {
     return request(app.getHttpServer())
-      .post('/v1/appointment')
+      .post('/v1/appointments')
       .send(createAppointmentMockRequest)
       .then((result) => {
         expect(result.statusCode).toEqual(201);
@@ -47,9 +47,9 @@ describe('AppointmentController (e2e)', () => {
       })
   })
 
-  it('/appointment/search (SEARCH APPOINTMENT)', () => {
+  it('/appointments/search (SEARCH APPOINTMENT)', () => {
     return request(app.getHttpServer())
-      .post('/v1/appointment/search')
+      .post('/v1/appointments/search')
       .send(searchAppointmentMockRequest)
       .then((result) => {
         expect(result.statusCode).toEqual(201);
@@ -63,9 +63,9 @@ describe('AppointmentController (e2e)', () => {
       })
   })
 
-  it('/appointment/{appointmentId} (GET BY APPOINTMENT ID)', () => {
+  it('/appointments/{appointmentId} (GET BY APPOINTMENT ID)', () => {
     return request(app.getHttpServer())
-      .get(`/v1/appointment/${createAppointmentMockRequest._id}`)
+      .get(`/v1/appointments/${createAppointmentMockRequest._id}`)
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         expect(result.body).toHaveProperty('_id');
@@ -78,9 +78,9 @@ describe('AppointmentController (e2e)', () => {
       })
   })
 
-  it('/appointment/{appointmentId} (UPDATE APPOINTMENTSER ID', () => {
+  it('/appointments/{appointmentId} (UPDATE APPOINTMENTSER ID', () => {
     return request(app.getHttpServer())
-    .patch(`/v1/appointment/${createAppointmentMockRequest._id}`)
+    .patch(`/v1/appointments/${createAppointmentMockRequest._id}`)
     .send(updateAppointmentMockResponse)
     .then((result) => {
       expect(result.statusCode).toEqual(200);
@@ -95,9 +95,9 @@ describe('AppointmentController (e2e)', () => {
     })
   })
 
-  it('/appointment/{appointmentId} (DELETE BY OPPOINTMENT ID', () => {
+  it('/appointments/{appointmentId} (DELETE BY OPPOINTMENT ID', () => {
     return request(app.getHttpServer())
-      .delete(`/v1/appointment/${createAppointmentMockRequest._id}`)
+      .delete(`/v1/appointments/${createAppointmentMockRequest._id}`)
       .expect(200)
   })
 });
