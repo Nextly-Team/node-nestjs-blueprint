@@ -12,4 +12,8 @@ export class CreateUserDTO {
 
     @IsEnum(Availability)
     availability: Availability;
+
+    @IsString()
+    @MinLength(8)
+    password: string;
 }
