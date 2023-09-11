@@ -4,29 +4,31 @@ import { CreateAppointmentDTO } from './dto/create-appointment.dto';
 import { SearchAppointmentDTO } from './dto/search-appointment.dto';
 import { UpdateAppointmentDTO } from './dto/update-appointment.dto';
 import { Appointment } from './entity/appointment.entity';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/auth/decorator/auth.decorator';
+import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
+import { Public } from '../auth/decorator/public.decorator';
 
 @ApiTags('appointments')
-@Controller('v1/appointments')
+@Controller({path: 'appointments', version: '1'})
 export class AppointmentsController {
     constructor(
         private readonly appointmentsService: AppointmentsService
     ){}
 
-    @ApiParam(CreateAppointmentDTO)
+    @ApiBearerAuth()
+    @ApiBody({type: CreateAppointmentDTO})
     @Post()
     async createAppointment(@Body() createAppointmentDto: CreateAppointmentDTO): Promise<Appointment> {
         return await this.appointmentsService.create(createAppointmentDto);
     }
 
     @Public()
-    @ApiParam(SearchAppointmentDTO)
+    @ApiBody({type: SearchAppointmentDTO})
     @Post('/search')
     async searchAppointement(@Body() searchAppointmentDto: SearchAppointmentDTO): Promise<Appointment[]> {
         return await this.appointmentsService.search(searchAppointmentDto);
     }
 
+    @ApiBearerAuth()
     @ApiParam({
         name: 'id',
         required: true,
@@ -37,12 +39,13 @@ export class AppointmentsController {
         return await this.appointmentsService.deleteById(id);
     }
 
+    @ApiBearerAuth()
     @ApiParam({
         name: 'id',
         required: true,
         type: 'string',
     })
-    @ApiParam(UpdateAppointmentDTO)
+    @ApiBody({type: UpdateAppointmentDTO})
     @Patch(':id')
     async updateAppointmentById(@Param('id') id, @Body() updateAppointmentDto: UpdateAppointmentDTO): Promise<Appointment> {
         return await this.appointmentsService.update(updateAppointmentDto, id);

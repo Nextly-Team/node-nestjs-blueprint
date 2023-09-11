@@ -6,7 +6,7 @@ import { Appointment, AppointmentSchema } from '../src/appointments/entity/appoi
 import { AppointmentsModule } from '../src/appointments/appointments.module';
 import { AppointmentsService } from '../src/appointments/appointments.service';
 import { AppointmentsController } from '../src/appointments/appointments.controller';
-import { createAppointmentMockRequest, searchAppointmentMockRequest, updateAppointmentMockResponse } from './mock/appointmentMock';
+import { createAppointmentMockRequest, searchAppointmentMockRequest, updateAppointmentMockResponse } from './mock/appointments.mock';
 
 describe('AppointmentController (e2e)', () => {
   let app: INestApplication;
@@ -33,10 +33,10 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointments (CREATE APPOINTMENT)',() => {
     return request(app.getHttpServer())
-      .post('/v1/appointments')
+      .post('/appointments')
       .send(createAppointmentMockRequest)
       .then((result) => {
-        expect(result.statusCode).toEqual(201);
+        expect(result.status).toEqual(201);
         expect(result.body).toHaveProperty('_id');
         expect(result.body).toHaveProperty('weekOfYear');
         expect(result.body).toHaveProperty('year');
@@ -49,10 +49,10 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointments/search (SEARCH APPOINTMENT)', () => {
     return request(app.getHttpServer())
-      .post('/v1/appointments/search')
+      .post('/appointments/search')
       .send(searchAppointmentMockRequest)
       .then((result) => {
-        expect(result.statusCode).toEqual(201);
+        expect(result.status).toEqual(201);
         expect(result.body[0]).toHaveProperty('_id');
         expect(result.body[0]).toHaveProperty('weekOfYear');
         expect(result.body[0]).toHaveProperty('year');
@@ -65,9 +65,9 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointments/{appointmentId} (GET BY APPOINTMENT ID)', () => {
     return request(app.getHttpServer())
-      .get(`/v1/appointments/${createAppointmentMockRequest._id}`)
+      .get(`/appointments/${createAppointmentMockRequest._id}`)
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
+        expect(result.status).toEqual(200);
         expect(result.body).toHaveProperty('_id');
         expect(result.body).toHaveProperty('weekOfYear');
         expect(result.body).toHaveProperty('year');
@@ -80,10 +80,10 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointments/{appointmentId} (UPDATE APPOINTMENTSER ID', () => {
     return request(app.getHttpServer())
-    .patch(`/v1/appointments/${createAppointmentMockRequest._id}`)
+    .patch(`/appointments/${createAppointmentMockRequest._id}`)
     .send(updateAppointmentMockResponse)
     .then((result) => {
-      expect(result.statusCode).toEqual(200);
+      expect(result.status).toEqual(200);
       expect(result.body).toHaveProperty('_id');
       expect(result.body).toHaveProperty('weekOfYear');
       expect(result.body).toHaveProperty('year');
@@ -97,7 +97,7 @@ describe('AppointmentController (e2e)', () => {
 
   it('/appointments/{appointmentId} (DELETE BY OPPOINTMENT ID', () => {
     return request(app.getHttpServer())
-      .delete(`/v1/appointments/${createAppointmentMockRequest._id}`)
+      .delete(`/appointments/${createAppointmentMockRequest._id}`)
       .expect(200)
   })
 });

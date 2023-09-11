@@ -2,12 +2,19 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { JwtService } from "@nestjs/jwt";
 import { Request } from 'express';
 import { jwtConstants } from "./constants/auth.constants";
-import { IS_PUBLIC_KEY } from "./decorator/auth.decorator";
+import { IS_PUBLIC_KEY } from "./decorator/public.decorator";
 import { Reflector } from "@nestjs/core";
+import { UsersService } from "../users/users.service";
+import { IS_USER_OWNER } from "./decorator/user.owner.decorator";
+import { Roles } from "./decorator/roles.decorator";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private jwtService: JwtService, private reflector: Reflector) {}
+    constructor(
+        private jwtService: JwtService,
+        private reflector: Reflector,
+        private usersService: UsersService,
+    ) {}
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
@@ -32,6 +39,21 @@ export class AuthGuard implements CanActivate {
                 }
             )
             request['user'] = payload
+
+            const roles = this.reflector.get<string[]>('roles', context.getHandler());
+            if (roles){
+                if (request.user.roles?.includes(roles.toString()))
+                    return true;
+            }
+
+            const userOwner = this.reflector.get(IS_USER_OWNER, context.getHandler());
+            if(userOwner){
+                const user = await this.usersService.find(request.params.id);
+                if(request.user.sub != user._id.toString() || user._id.toString() != request.params.id){
+                    console.log("User request not match!")
+                    throw new UnauthorizedException();}
+            }
+
         }catch{
             throw new UnauthorizedException();
         }

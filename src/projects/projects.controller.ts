@@ -3,16 +3,17 @@ import { CreateProjectDTO } from './dto/create-project.dto';
 import { UpdateProjectDTO } from './dto/update-project.dto';
 import { Project } from './entity/project.entity';
 import { ProjectsService } from './projects.service';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @ApiTags('projects')
-@Controller('v1/projects')
+@Controller({path: 'projects', version: '1'})
 export class ProjectsController {
     constructor(
         private readonly projectsService: ProjectsService
     ){}
 
-    @ApiParam(CreateProjectDTO)
+    @ApiBody({type: CreateProjectDTO})
     @Post()
     async createProject(@Body() createProjectDto: CreateProjectDTO): Promise<Project> {
         return await this.projectsService.create(createProjectDto);
@@ -48,7 +49,7 @@ export class ProjectsController {
         required: true,
         type: 'string',
     })
-    @ApiParam(UpdateProjectDTO)
+    @ApiBody({type: UpdateProjectDTO})
     @Patch(':id')
     async updateProjectById(@Param('id') id, @Body() updateProjectDto: UpdateProjectDTO): Promise<Project> {
         return await this.projectsService.update(updateProjectDto, id);

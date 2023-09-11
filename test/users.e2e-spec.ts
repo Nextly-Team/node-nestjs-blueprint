@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { UsersModule } from '../src/users/users.module';
-import { createUserMockRequest, updateUserMockResponse } from './mock/userMock';
+import { createUserMockRequest, updateUserMockResponse } from './mock/users.mock';
 import { UsersService } from '../src/users/users.service';
 import { UsersController } from '../src/users/users.controller';
-import { getModelToken, MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from '../src/users/entity/user.entity';
 
 describe('UserController (e2e)', () => {
@@ -27,16 +27,12 @@ describe('UserController (e2e)', () => {
     await app.init();
   });
 
-  afterAll(async () => {
-    moduleFixture.close();
-  });
-
   it('/users (CREATE USER)',() => {
     return request(app.getHttpServer())
-      .post('/v1/users')
+      .post('/users')
       .send(createUserMockRequest)
       .then((result) => {
-        expect(result.statusCode).toEqual(201);
+        expect(result.status).toEqual(201);
         expect(result.body).toHaveProperty('_id');
         expect(result.body).toHaveProperty('name');
         expect(result.body).toHaveProperty('email');
@@ -46,9 +42,9 @@ describe('UserController (e2e)', () => {
 
   it('/users (GET ALL USERS)', () => {
     return request(app.getHttpServer())
-      .get('/v1/users')
+      .get('/users')
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
+        expect(result.status).toEqual(200);
         expect(result.body[0]).toHaveProperty('_id');
         expect(result.body[0]).toHaveProperty('name');
         expect(result.body[0]).toHaveProperty('email');
@@ -58,9 +54,9 @@ describe('UserController (e2e)', () => {
 
   it('/users/{userId} (GET BY USER ID)', () => {
     return request(app.getHttpServer())
-      .get(`/v1/users/${createUserMockRequest._id}`)
+      .get(`/users/${createUserMockRequest._id}`)
       .then((result) => {
-        expect(result.statusCode).toEqual(200);
+        expect(result.status).toEqual(200);
         expect(result.body).toHaveProperty('_id');
         expect(result.body).toHaveProperty('name');
         expect(result.body).toHaveProperty('email');
@@ -70,10 +66,10 @@ describe('UserController (e2e)', () => {
 
   it('/users/{userId} (UPDATE BY USER ID', () => {
     return request(app.getHttpServer())
-    .patch(`/v1/users/${createUserMockRequest._id}`)
+    .patch(`/users/${createUserMockRequest._id}`)
     .send(updateUserMockResponse)
     .then((result) => {
-      expect(result.statusCode).toEqual(200);
+      expect(result.status).toEqual(200);
       expect(result.body).toHaveProperty('_id');
       expect(result.body).toHaveProperty('name');
       expect(result.body.name).toEqual('NEXTLY');
@@ -84,7 +80,14 @@ describe('UserController (e2e)', () => {
 
   it('/users/{userId} (DELETE BY USER ID', () => {
     return request(app.getHttpServer())
-      .delete(`/v1/users/${createUserMockRequest._id}`)
+      .delete(`/users/${createUserMockRequest._id}`)
       .expect(200)
   })
+
+  afterAll(async () => {
+    request(app.getHttpServer())
+      .delete(`/users/${createUserMockRequest._id}`)
+    moduleFixture.close();
+  });
 });
+

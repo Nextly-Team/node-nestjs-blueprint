@@ -43,9 +43,16 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+# Swagger
+
+```
+http://[HOST]:[PORT]/api/docs
+```
+
 # API
 
 - [Users](#users)
+- [Auth](#auth)
 - [Projects](#projects)
 - [Appointement](#appointment)
 
@@ -148,6 +155,52 @@ Body Response:
 ```
 
 [Back to User](#user)
+
+## Auth
+
+- [Login](#login)
+- [Profile](#profile)
+
+[Back to API](#api)
+
+### Login
+
+> ***POST** `auth/login`
+
+Body Request:
+```json
+{
+    "email": "string",
+    "password": "string"
+}
+```
+
+Body Response:
+```json
+{
+    "access_token": "string"
+}
+```
+
+[Back to Auth](#auth)
+
+### Profile
+
+Return the user profile data logged in
+
+> ***POST** `auth/profile`
+
+Body Response:
+```json
+{
+    "sub": "string",
+    "username": "string",
+    "iat": "timestamp",
+    "exp": "timestamp"
+}
+```
+
+[Back to Auth](#auth)
 
 ## Projects
 
@@ -255,7 +308,7 @@ Body Response:
 
 ### Create Appointment
 
-> ***POST*** `v1/appointment`
+> ***POST*** `v1/appointments`
 
 Body Request:
 ```json
@@ -302,13 +355,13 @@ Body Response:
 
 ### Delete Appointment
 
-> ***DELETE***  `v1/appointment/{id}`
+> ***DELETE***  `v1/appointments/{id}`
 
 [Back to Appointment](#appointment)
 
 ### Update Appointment
 
-> ***PATCH*** `v1/appointment/{id}`
+> ***PATCH*** `v1/appointments/{id}`
 
 Body Request:
 ```json
@@ -344,9 +397,38 @@ Body Response:
 
 [Back to Appointment](#appointment)
 
+### Find All Appointements
+
+> ***GET***  `v1/appointments`
+
+Body Response:
+```json
+[
+    {
+        "_id": "string",
+        "weekOfYear": "integer",
+        "year": "integet",
+        "user": {
+            "name": "string",
+            "email": "string",
+            "availability": "Full"
+        },
+        "project": {
+            "name": "string",
+            "tag": "string"
+        },
+        "status": "Allocated",
+        "availability": "Full",
+        "otherAvailability": "string"
+    }
+]
+```
+
+[Back to Project](#project)
+
 ### Find By Appointement Id
 
-> ***GET***  `v1/appointment`
+> ***GET***  `v1/appointments/{id}`
 
 Body Response:
 ```json
@@ -373,7 +455,7 @@ Body Response:
 
 ### Search Appointment
 
-> ***POST***`v1/appointment`
+> ***POST***`v1/appointments/search`
 
 Body Request:
 ```json
