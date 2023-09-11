@@ -10,16 +10,23 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DATABASE_HOST),
+    ThrottlerModule.forRoot([{
+      ttl: 60,
+      limit: 10,
+    }]),
     UsersModule, 
     ProjectsModule, 
     AppointmentsModule, 
     TerminusModule, 
-    HttpModule, AuthModule],
+    HttpModule,
+    AuthModule
+  ],
   controllers: [HealthCheckController],
   providers: [
     {
