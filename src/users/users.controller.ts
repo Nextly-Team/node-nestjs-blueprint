@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Request } from '@nestjs/common';
+import { Body, CacheInterceptor, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Request, UseInterceptors } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { User } from './entity/user.entity';
@@ -11,6 +11,7 @@ import { Roles } from '../auth/decorator/roles.decorator';
 
 @ApiTags('users')
 @Controller({path: 'users', version: '1'})
+@UseInterceptors(CacheInterceptor)
 export class UsersController {
     constructor(
         private readonly usersService: UsersService,

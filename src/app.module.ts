@@ -1,4 +1,7 @@
-import { Module } from '@nestjs/common';
+import type { RedisClientOptions } from 'redis';
+import * as redisStore from 'cache-manager-redis-store';
+import { CacheModule } from '@nestjs/cache-manager';
+import { CacheInterceptor, Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
 import { AppointmentsModule } from './appointments/appointments.module';
@@ -8,7 +11,7 @@ import { HealthCheckController } from './health-check.controller';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import { ThrottlerModule } from '@nestjs/throttler';
 
@@ -20,6 +23,12 @@ import { ThrottlerModule } from '@nestjs/throttler';
       ttl: 60,
       limit: 10,
     }]),
+    CacheModule.register<RedisClientOptions>({
+      isGlobal: true,
+      ttl: 60,
+      store: redisStore,
+      url: process.env.REDIS_HOST,
+    }),
     UsersModule, 
     ProjectsModule, 
     AppointmentsModule, 
@@ -29,6 +38,10 @@ import { ThrottlerModule } from '@nestjs/throttler';
   ],
   controllers: [HealthCheckController],
   providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    },
     {
       provide: APP_GUARD,
       useClass: AuthGuard
