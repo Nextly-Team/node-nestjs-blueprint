@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, CacheInterceptor, Controller, Delete, Get, Param, Patch, Post, UseInterceptors } from '@nestjs/common';
 import { AppointmentsService } from './appointments.service';
 import { CreateAppointmentDTO } from './dto/create-appointment.dto';
 import { SearchAppointmentDTO } from './dto/search-appointment.dto';
@@ -9,6 +9,7 @@ import { Public } from '../auth/decorator/public.decorator';
 
 @ApiTags('appointments')
 @Controller({path: 'appointments', version: '1'})
+@UseInterceptors(CacheInterceptor)
 export class AppointmentsController {
     constructor(
         private readonly appointmentsService: AppointmentsService

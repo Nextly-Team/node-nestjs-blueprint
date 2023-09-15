@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Request } from '@nestjs/common';
+import { Body, CacheInterceptor, Controller, Get, HttpCode, HttpStatus, Post, Request, UseInterceptors } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { Public } from './decorator/public.decorator';
@@ -8,6 +8,7 @@ import { AuthLoginResponseDTO } from './dto/auth.login.response.dto';
 
 @ApiTags('auth')
 @Controller({path: 'auth', version: '1'})
+@UseInterceptors(CacheInterceptor)
 export class AuthController {
     constructor(private authService: AuthService) {}
 

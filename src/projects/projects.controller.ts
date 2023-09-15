@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, CacheInterceptor, Controller, Delete, Get, Param, Patch, Post, UseInterceptors } from '@nestjs/common';
 import { CreateProjectDTO } from './dto/create-project.dto';
 import { UpdateProjectDTO } from './dto/update-project.dto';
 import { Project } from './entity/project.entity';
@@ -8,6 +8,7 @@ import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
 @ApiBearerAuth()
 @ApiTags('projects')
 @Controller({path: 'projects', version: '1'})
+@UseInterceptors(CacheInterceptor)
 export class ProjectsController {
     constructor(
         private readonly projectsService: ProjectsService
