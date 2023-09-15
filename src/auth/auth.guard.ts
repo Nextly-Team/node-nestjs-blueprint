@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Request } from 'express';
 import { jwtConstants } from "./constants/auth.constants";
@@ -50,7 +50,7 @@ export class AuthGuard implements CanActivate {
             if(userOwner){
                 const user = await this.usersService.find(request.params.id);
                 if(request.user.sub != user._id.toString() || user._id.toString() != request.params.id){
-                    console.log("User request not match!")
+                    Logger.log("User request not match!")
                     throw new UnauthorizedException();}
             }
 
